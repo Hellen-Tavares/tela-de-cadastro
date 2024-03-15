@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRANSJOB CONNECT</title>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Nova+Square&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to right, #55CDFC, #F7A8B8, #FFFFFF, #F7A8B8, #55CDFC);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+        }
+
+        header {
+            background-color: #f36ed6;
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .tab button {
+            flex-grow: 1;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab button.active {
+            background-color: #81b2e6;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        form {
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        input, button {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            border: 1px solid #c0c0c0;
+            background-color: transparent;
+            border-bottom: 1px solid #ccc;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        label {
+            border: none;
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        button {
+            background-color: #e772e7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #72abe7;
+        }
+
+        .success-message, .error-message {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BEM-VINDO(A) AO TRANSJOB CONNECT</h1>
+        </header>
+        <div class="tabs">
+            <button class="tablinks active" onclick="openTab(event, 'cadastro-usuario')">
+                <i class="fas fa-user"></i> Cadastro de Usuário
+            </button>
+            <button class="tablinks" onclick="openTab(event, 'cadastro-empresa')">
+                <i class="fas fa-building"></i> Cadastro de Empresa
+            </button>
+        </div>
+
+        <div id="cadastro-usuario" class="tab-content active">
+            <form id="cadastro-usuario-form" onsubmit="return validateUserForm()">
+                <label for="nome-usuario" >Nome</label>
+                <input type="text" id="nome-usuario" name="nome-usuario" required>
+
+                <label for="email-usuario">Email</label>
+                <input type="email" id="email-usuario" name="email-usuario" required>
+
+                <label for="senha-usuario">Senha</label>
+                <input type="password" id="senha-usuario" name="senha-usuario" required>
+
+                <button type="submit">Cadastrar</button>
+                <div class="success-message" id="success-message-user">Cadastro realizado com sucesso!</div>
+                <div class="error-message" id="error-message-user">Erro ao cadastrar usuário. Por favor, tente novamente.</div>
+            </form>
+        </div>
+
+        <div id="cadastro-empresa" class="tab-content">
+            <form id="cadastro-empresa-form" onsubmit="return validateCompanyForm()">
+                <label for="nome-empresa">Nome da Empresa</label>
+                <input type="text" id="nome-empresa" name="nome-empresa" required>
+
+                <label for="cnpj-empresa">CNPJ</label>
+                <input type="text" id="cnpj-empresa" name="cnpj-empresa" required>
+
+                <label for="endereco-empresa">Endereço</label>
+                <input type="text" id="endereco-empresa" name="endereco-empresa" required>
+
+                <label for="senha-empresa">Senha</label>
+                <input type="password" id="senha-empresa" name="senha-empresa" required>
+
+                <button type="submit">Cadastrar</button>
+                <div class="success-message" id="success-message-company">Cadastro realizado com sucesso!</div>
+                <div class="error-message" id="error-message-company">Erro ao cadastrar empresa. Por favor, tente novamente.</div>
+            </form>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
+        
